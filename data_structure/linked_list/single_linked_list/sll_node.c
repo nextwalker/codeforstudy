@@ -33,6 +33,26 @@ int sll_insert(Node **rootp, int new_value) {
 	return TRUE;
 }
 
+int sll_insert_new(register Node **linkp, int new_value) {
+	register Node *current;
+	register Node *new;
+	
+	while ( (current = *linkp) != NULL &&
+		current->value < new_value ) {
+		linkp = &current->link;
+	}
+
+	new = (Node *)malloc(sizeof(Node));
+	if (new == NULL) {
+		return FALSE;
+	}
+	new->value = new_value;
+
+	new->link = current;
+	*linkp = new;
+	return TRUE;
+}
+
 void sll_print(Node *root) {
 	Node *current;
 	current = root;
@@ -50,7 +70,7 @@ int main() {
 	root = NULL;
 
 	for (i = 0; i < 8; i++) {
-		sll_insert(&root, arr[i]);
+		sll_insert_new(&root, arr[i]);
 		sll_print(root);
 	}
 	return TRUE;
