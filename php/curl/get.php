@@ -2,9 +2,9 @@
     
 $ch = curl_init('http://www.baidu.com/');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_exec($ch);
+$content = curl_exec($ch);
 
-echo "\n\n\n\n";
+echo "\n\n\n";
 
 if(!curl_errno($ch)) {
     $info = curl_getinfo($ch);
@@ -13,5 +13,8 @@ if(!curl_errno($ch)) {
 
 curl_close($ch);
 
-echo "\n\n";
+//echo $content;
+
+
+echo "\n\n\n";
     // curl_setopt($ch, CURLOPT_PORT, 80);
