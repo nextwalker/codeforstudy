@@ -1,0 +1,35 @@
+chapter 1 快速上手
+
+1.1 空白和注释
+    注释代码，预处理指令
+    #if 0
+        statements
+    #endif
+1.2 预处理指令
+    #include dry原则
+    #define
+    函数原型
+    过程procedure
+1.3 main函数
+    数组参数是以引用reference形式进行传递的，也就是传址引用
+    标量和常量则是按值value传递的，也就按值传递
+    维护代码注释的价值
+    printf
+    字符串常量
+    NUL 是\0 NULL指一个其值为0的空指针 他们都是0，相等的
+
+    数组参数 数组可以任意长度，但是需要另一个参数来提供数组的长度
+    scanf &
+    &&
+    c编译器不会对数组下标的有效性进行检查
+    EOF是一个整型值，它的位数比字符类型要多。获取单个字符最好用整型存储
+    字符只是小整型数而已
+    空语句 empty statement ;
+    数组名和指针
+1.4 
+    putchar() getchar()
+    strcpy strncpy strcat strchr
+
+    
+
+    
