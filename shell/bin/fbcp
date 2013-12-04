@@ -1,0 +1,44 @@
+#!/bin/bash
+
+path=vip$1;
+
+if [ ! -d /svn/$path ]; then
+    echo "error domain"
+    exit;
+fi
+
+for filename in $@
+do
+    if [ ${fileName#*} == "php" ]; then
+    
+    elif [ ${fileName#*} == "html" ]; then
+        
+    elif
+        #文件夹
+    
+
+    fi;
+    
+    if [ !-f /svn/$file ]; then
+        file="";
+    fi
+    a[]={vipte/public,vipte/library/App/,vipte/service}
+    echo "cp $file $target"
+    cp $file $target
+    svn st /svn/179$path
+done
+
+function find_file() {
+	for file in $1/*
+	do
+		if [ -d $file ] 
+		then
+			echo $file;
+			foreachd $file;
+		elif [ -f $file ]
+		then
+			echo $file
+		fi
+	done
+}
+# [ "$(echo $fileName | grep .php)" != "" ]

@@ -1,0 +1,7 @@
+#!/bin/bash
+path=$1
+if [ "$1" == "club" ];
+then
+    path="lux"    
+fi
+curl test.vipshop.com/update_version.php -u xcz:KPEU86VcyX -d select=$path | head -n -26 | tail -n +4
