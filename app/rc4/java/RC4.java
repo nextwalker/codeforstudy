@@ -13,7 +13,7 @@ public class RC4{
             s[j] = tmp;
         }
         for(int i=0;i<256;i++)
-            System.out.println(s[i]);
+            ;//System.out.println(s[i]);
     }
 
     public int encrypt(byte[] in, int in_offset, byte[] out,
@@ -58,8 +58,10 @@ public class RC4{
         String key = "12345678";
         RC4 rc4 = new RC4(key.getBytes());
         byte[] encrypt_data = rc4.encrypt(data.getBytes());
-        System.out.println(encrypt_data.toBinaryString());
-        byte[] decrypt_data = rc4.decrypt(encrypt_data);
-        System.out.println(decrypt_data.toString());
+        System.out.println(new String(encrypt_data));
+        
+        RC4 rc5 = new RC4(key.getBytes());
+        byte[] decrypt_data = rc5.decrypt(encrypt_data);
+        System.out.println(new String(decrypt_data));
     }
 }
