@@ -1,0 +1,15 @@
+第八章 UNIX系统接口
+
+8.1 文件描述符
+
+8.2 低级IO read write
+
+8.3 open creat close unlink
+
+8.4 随机访问 lseek
+
+8.5 实例 fopen getc函数的实现
+
+8.6 实例 目录列表
+
+8.7 实例 存储分配程序

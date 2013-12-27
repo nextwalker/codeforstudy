@@ -1,0 +1,103 @@
+第六章 结构
+结构是一个或多个变量的集合，一个单元，包含相关的多个变量
+
+6.1 结构的基本知识
+关键字struct引入结构声明，结构声明由包含在花括号内的一系列声明组成。
+关键字struct后面的名字是可选的，称为结构标记（point）
+结构标记用于为结构命名，在定义之后，结构标记就代表花括号内的声明，可以用它作为该声明的简写形式
+
+结构中定义的变量称为成员
+结构成员，结构标记和普通变量可以采用相同的名字。（不会冲突，因为通过上下文分析总可以对它们进行区分）
+不同结构的成员可以使用相同的名字
+
+struct声明定义了一种数据类型，后边可以跟变量表
+struct {....} x, y, z; 类似于int x, y, z 声明指定类型的变量，并分配存储空间
+不带变量表，不需要分配存储空间，仅仅描述了一种结构的模板和轮廓。
+strcut point pt
+strcut point maxpt = {320, 200} 初始化
+初值必须是常量表达式
+
+访问: 结构名.成员
+
+结构可以嵌套
+
+struct point {
+	int x;
+	int y;
+}
+
+struct rect {
+	struct point pt1;
+	struct point pt2;
+}
+
+struct rect screen; 
+screen.pt1.x
+
+6.2 结构与函数
+结构和合法操作只有几种：
+    作为一个整体赋值和复制
+    通过&运算符取地址
+    访问其成员
+结构之间不可以进行比较
+可以用一个常量成员值列表初始化结构，自动结构也可以通过赋值进行初始化
+
+struct point *pp； 
+(*pp).x 简写形式 pp->结构成员（pp是指向一个结构的指针） (p.x p是一个结构变量)
+. -> () [] 优先级最高的
+
+struct {
+    int len;
+    char *str
+} *p;
+++p->len 相当于 ++(p->len)
+(++p)->len 先加1 再对len执行操作
+(p++)->len 先对len执行操作，再加1
+
+*p->str 读取的是指针str所指向的对象的值
+*p->str++ 先读取指针str指向的对象的值，然后再将str加1（*s++相同）
+(*p->str)++ 讲指针str指向的对象的值加1
+*p++->str 先读取指针str指向的对象的值，然后再将p加1
+ 
+6.3 结构数组
+struct key {
+    char *word;
+    int count;
+} keytab[NKEYS];
+声明了一个结构类型key，并定义了该类型的结构数组keytab，同时分配存储空间。
+
+struct key {
+    char *word;
+    int count;
+} keytab[] = {
+    "auto", 0,
+    "break", 0,
+    "default", 0
+    "while", 0
+}
+因为结构keytab包含一个固定的名字集合，所以最好将它声明为外部变量。
+{"auto", 0} 初值也要按照成对的方式给出，内层的花括号可以省略
+
+keytab[] 机器可以自动计算长度，也是推荐的一种方式
+另外一种办法，在初值表的结尾处加上一个空指针，然后循环遍历keytab，直到读到尾部的空指针为止。
+项数 keytab的长度 /struct key的长度
+sizeof用于计算任意对象的长度
+
+sizeof 对象 或者 sizeof(类型)，将返回一个整型值，它等于指定对象或类型占用的存储空间字节数
+sizeof 返回的是size_t 无符号整型值，定义于<stddef.h>
+对象可以使变量、数组、结构
+类型可以使int double基本类型，也可以是结构类型 指针类型等派生类型
+
+#define NKEYS (sizeof keytab / sizeof(struct key))
+#define NKEYS (sizeof keytab / sizeof(keytab[0]))
+
+条件编译语句#if中不能使用sizeof，因为预处理器不对类型名进行分析。
+#define使用sizeof是合法的，因为预处理器并不计算#define语句中的表达式  
+
+6.4 指向结构的指针
+结构的长度并不等于各成员长度的和。
+因为不同的对象有不同的对齐要求，所以结构中可能会出现未命名的空穴 hole
+
+6.5 自引用结构
+
+6.6 表查找
