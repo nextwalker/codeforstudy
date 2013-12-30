@@ -99,5 +99,65 @@ sizeof 返回的是size_t 无符号整型值，定义于<stddef.h>
 因为不同的对象有不同的对齐要求，所以结构中可能会出现未命名的空穴 hole
 
 6.5 自引用结构
+一个包含其自身实例的结构是非法的，但是可以包含指向自身结构的指针
+
+两个结构相互引用。(指针)
 
 6.6 表查找
+后边补充
+
+6.7 类型定义 typedef
+typedef 用来建立新的数据类型名
+typedef int Length (将Length定义为与int具有同等意义的名字)
+类型Length可用于类型声明，类型转换等，它和类型INT完全相同
+Length *lengths[]
+
+typedef char* String
+String p, lineptr[MAXLINES], alloc(int); 
+int strcmp(String, String);
+p = (String) malloc(100);
+
+typedef 语法上类似于存储类extern static等
+typedef 定义的类型名的首字母要大写，以示区别。
+
+typedef struct tnode *Treeptr;
+typedef struct tnode { /* the tree node: */
+    char *word;
+    int count;
+    struct tnode *left;
+    struct tnode *right;
+} Treenode;
+Treenode 一个结构 TreePtr 一个指向该结构的指针
+Treeptr talloc(void) {
+    return (Treeptr) malloc(sizeof(Treenode));
+}
+
+从任何意义上讲，typedef声明并没有创建一个新的类型，它只是为某个已存在的类型增加了一个新的名称而已。
+typedef声明也没有增加任何新的语义:通过这种方式声明的变量与通过普通声明方式声明的变量具有完全相同的属性。
+实际上，typedef类似于#define语句，但是由于typedef是由编译器解释的，因此它的文本替换功能要超过预处理器的能力。
+
+typedef int (*PFI)(char *, char *);
+该语句定义了类型PFI是 一个指向函数的指针，该函数具有两个char *类型的参数，返回值类型为int。可用于某些上下文中
+PFI strcmp, numcmp;
+
+typedef 的优点
+1. 表达方式更简洁
+*2. 它可以使程序参数化，以提高程序的可移植性
+    如果typedef声明的数据类型同机器有关，那么，当程序移植到其他机器上时，只需改变typedef类型的定义就可以了
+    常用的情况，typedef定义一组合适的short int long 然后程序使用通过typedef定义的类型名
+    size_t ptrdiff_t
+*3 为程序提供更好的说明性 Treeptr
+
+6.8 联合
+联合是可以(在不同时刻)保存不同类型和长度的对象的变量，编译器负责跟踪对象的长度和对齐要求。
+联合提供了一种方式，以在单块存储区域中管理不同类型的数据，而不需要在程序中嵌入任何同机器有关的信息。
+
+联合的目的 一个变量可以合法地保存多种数据类型中的任何一种类型的对象。
+特定类型的常量值必须保存在合适类型的变量中，然而，如果该常量的不同类型占据相同大小的存储空间，且保存在同一个地方的话，表管理将最方便。
+int float 字符指针
+
+union u_tag {
+    int ival;
+    float fval;
+    char *sval;
+}
