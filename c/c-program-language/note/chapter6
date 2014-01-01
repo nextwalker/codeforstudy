@@ -160,4 +160,68 @@ union u_tag {
     int ival;
     float fval;
     char *sval;
-}
+} u;
+变量u必须足够大，已保存这3中类型中最大的一种，具体的长度同具体的实现有关。
+读取的类型必须是最近一次存入的类型，程序员负责耿总当前保存在联合中的类型。
+如果保存的类型和读取的类型不一致，其结果取决于具体的实现
+
+联合名.成员 或者 联合指针->成员
+
+访问结构中的联合（或反之）的某一成员的表示法与嵌套结构相同。
+symtab[i].u.sval (sval char *)
+
+引用字符串sval的第一个字符
+*symtab[i].u.sval
+symtab[i].u.sval[0]
+
+实际上，联合就是一个结构，他的所有成员相对于基地址的偏移量都为0，此结构空间要大到足够容纳最宽成员，而且，其对齐方式要适合联合中所有类型的成员。
+对联合允许的操作与对结构允许的操作相同，作为一个整体单元进行赋值、复制、取地址以及访问其中一个成员。
+
+联合只能用第一个成员类型的值进行初始化。
+
+6.9 位字段
+在存储空间很宝贵的情况下，有可能需要将多个对象保存在一个机器字中。
+一种常用的方法是，使用类似于编译器符号表的单个二进制位标志集合。
+
+编译器符号表操作 使用char或者int对象中的位标志集合 来表示他是否没关键字 是否为外部的 是否为静态的特定信息
+屏蔽码集合
+#define KEYWORD 01
+#define EXTERNAL 02
+#define STATIC 04
+或 enum {KEYWORD = 01, EXTERNAL = 02, STATIC = 04 };
+访问位字段 移位运算 屏蔽运算 补码运算
+
+flags |= EXTERNAL | STATIC;   将EXTERNAL和STATIC位置为1
+flags &= ~(EXTERNAL | STATIC) 将EXTERNAL和STATIC位置为0
+if ( flags & (EXTERNAL | STATIC) ) 都为0的时候 值为真。
+
+直接定义和访问一个字中的位字段的能力，而不需要通过按位逻辑运算符。
+位字段 bit-field 简称字段 是"字"中相邻位的集合。
+字word 是单个的存储单元，他同具体的实现有关。
+
+struct{
+    unsigned int is_keyword : 1;
+    unsigned int is_extern  : 1;
+    unsigned int is_static  : 1;
+} flags;
+冒号后的数字表示字段的宽度(用二进制位数表示)。
+字段声明为unsigned int 类型，以保证他们是无符号常量
+
+flags.is_keyword flags.is_extern 字段的作用与小整数相似
+flags.is_keyword = flags.is_extern = 1
+flags.is_keyword = flags.is_extern = 0
+flags.is_keyword ==0 && flags.is_extern == 0
+
+字段的所有属性几乎都同具体的实现有关。
+字段是否能覆盖自边界由具体的实现定义。
+字段可以不命名，无名字段(只有一个冒号和宽度)起填充作用。
+特殊宽度0 可以用来强制在下一个字边界上对齐。
+
+某些机器上字段的分配是从字的左端至右端进行，而某些机器上完全相反。这意味着，尽管字段对维护内部定义的数据结构很有用，但是，
+在选择外部定义数据的情况下，必须仔细考虑那段优先的问题。依赖于这些因素的程序是不可以移植的。
+
+字段也可以仅仅声明为int 为了方便移植，需要显式声明该int类型是signed还是unsigned类型。
+字段不是数组，且没有地址，因此对他们不能使用&运算符。
+
+
+
