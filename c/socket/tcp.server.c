@@ -29,22 +29,17 @@ int main(int argc, char *argv[])
         perror("bind");
     }
     listen(server_socket, 10);
-    while (1)
-    {
+    while (1) {
         client_socket=accept(server_socket, (struct sockaddr *)&client_addr, (socklen_t *)&addr_len);
         child_id = fork();
-        if (child_id == 0)
-        {
-            while((read_count=read(client_socket, buffer, 512))>0)
-            {
+        if (child_id == 0) {
+            while((read_count=read(client_socket, buffer, 512))>0) {
                 //fork 创建多进程
                 close(server_socket);
                 write(client_socket, buffer, read_count);
                 memset(buffer, 0, 512);
             }
-        }
-        else if (child_id > 0)
-        {
+        } else if (child_id > 0) {
             close(client_socket);
         }
     }

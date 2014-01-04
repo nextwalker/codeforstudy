@@ -1,5 +1,7 @@
 第七章 输入与输出
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/include
+
 输入输出功能并不是c语言本身的组成部分。
 标准库是可移植的的
 
@@ -26,7 +28,7 @@
     
     printf()  
     #inlcude <stdio.h>
-    当文件名有一对尖括号<>括起来的时候，预处理器将在由具体实现定义的有关位置查找指定的文件夹。 unix: /usr/inlcude
+    当文件名有一对尖括号<>括起来的时候，预处理器将在由具体实现定义的有关位置查找指定的文件夹。 unix: /usr/inlcude mac /Library
     
     许多程序只从一个输入流中读取数据，并且只向一个输出流中输出数据，getchar puchar printf足够了。
     重定向更是如此。
@@ -44,7 +46,7 @@
         负号 左对齐的形式输出
         数  指定最小字段宽度， 多余的字符位置用空格填充以保证最小宽度
         小数点 用于将字段宽度和精度分开
-        数 用于指定精度，字符段中要打印的最大字符数，浮点数小数点后的位数，整形最少输出的数字数目
+        数 用于指定精度，字符串中要打印的最大字符数，浮点数小数点后的位数，整形最少输出的数字数目
         字母h或l h表不将整数作为short类型打印 l表示将整数作为long类型打印。 （不懂）
         
     printf("%.*s", max, s) 
@@ -187,3 +189,6 @@
     数学函数
     
     随机数发生器函数
+    
+    
+1. 那里查找getchar 的定义。getchar是宏，定义在哪里？
