@@ -38,9 +38,40 @@
 
 第四章 时间概念
     4.1 时间的表示
+        date
+        
+        #include <time.h>
+        time_t time(time_t *tloc);
+        char *ctime(const time_t *clock);
+        time函数返回从1970年1月1日0点以来的秒数，存储在time_t机构之中。
+        ctime函数将秒数转化为字符串。返回类型是固定的，固定长度为26
+        Thu Dec 7 14:58:59 2000
+                
     4.2 时间的测量
+        struct timeval {
+            long tv_sec;
+            long tv_usec;
+        }
+        int gettimeofday(struct timeval *tv, timezone *tz);
+        
+        C语言触发运算，一定要注意类型转换的问题。（整型除法没有小数）
+        
     4.3 计时器的使用
-
+        linux操作系统为每一个进程提供3个内部间隔计时器
+        ITIMER_REAL 减少实际时间，到时的时候发出SIGALRM信号
+        ITIMER_VIRTUANL 减少有效时间(进程执行的时间)，产生SIGVTALRM信号
+        ITIMER_PROF 减少进程的有效时间和系统时间(为进程调度用的时间) 产生SIGROF信号
+        这个经常和上面一个使用用来计算系统内核的时间和用户时间
+        
+        #include <sys/time.h>
+        int getitimer(int which, struct itimerval *value);
+        int setitimer(int which, struct itimerval *newval, struct itimerval *oldval);
+        strcut itimerval {
+            strcut timeval it_interval;
+            struct timeval it_value;
+        }
+        
+        
 第五章 信号处理
     5.1 信号的产生
     5.2 信号的处理
