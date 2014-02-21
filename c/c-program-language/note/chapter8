@@ -58,7 +58,7 @@ ANSI C标准函数库是以UNIX系统为基础建立起来的。
     BUFSIZ 对于所使用的操作系统来说，该值是一个较合适的数值。
     
     getchar
-    #undef
+    #undef getchar
     
 8.3 open creat close unlink
     除了默认的标准输入 标准输出 和标准错误文件外，其他文件都必须在读或写之前显式地打开。 open creat用于实现该功能。
@@ -120,3 +120,28 @@ ANSI C标准函数库是以UNIX系统为基础建立起来的。
 8.6 实例 目录列表
 
 8.7 实例 存储分配程序
+
+
+code:
+1. read的第一个参数是fd，fd是0，1，2，3。 shell程序可以直接用0作为参数，0是标准输入
+stderr 这个是个指针？
+read阻塞问题，什么时候返回？？？
+申请读入1024个字符，当按回车的时候，read就返回结果了
+
+2. 头文件
+stdio.h 输入输出 getchar printf
+./stdio.h:200:#define	BUFSIZ	1024
+unistd.h read write
+
+3. sizeof 判断数据类型长度符的关键字
+sizeof是C/C++中的一个操作符（operator），简单的说其作用就是返回一个对象或者类型所占的内存字节数。 
+其返回值类型为size_t，在头文件stddef.h中定义
+
+世上编译器林林总总，但作为一个规范，它们都会保证char、signed char和unsigned char的sizeof值为1，毕竟char是我们编程能用的最小数据类型。
+
+sizeof有三种语法形式，如下：
+1) sizeof( object ); // sizeof( 对象 );
+2) sizeof( type_name ); // sizeof( 类型 );
+3) sizeof object; // sizeof 对象;
+
+sizeof的计算发生在编译时刻，所以它可以被当作常量表达式使用，

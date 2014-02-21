@@ -191,4 +191,5 @@
     随机数发生器函数
     
     
-1. 那里查找getchar 的定义。getchar是宏，定义在哪里？
+1. 那里查找getchar 的定义。getchar是宏，定义在哪里？ why 没找到 getc是啥关系
+getc参数是文件指针
