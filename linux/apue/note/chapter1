@@ -22,3 +22,17 @@
 
 1.11 系统调用和库函数
 
+
+
+
+code
+{
+    execlp(buf, buf, (char *)0);
+    err_ret("couldn't execute: %s", buf);
+    exit(127);
+    
+    
+    01080757055
+}
+执行逻辑是什么？ 貌似不是顺序执行的。
+execlp这个函数的用法是什么
