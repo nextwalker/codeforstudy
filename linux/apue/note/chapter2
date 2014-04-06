@@ -113,3 +113,44 @@
     sys/time.h      时间类型
     sys/timeb.h     附加的日期和时间定义
     sys/uio.h       矢量IO操作
+    
+    POSIX标准定义的可选头文件
+    aio.h           异步IO
+    mqueue.h        消息队列
+    pthread.h       线程
+    sched.h         执行调度
+    semaphore.h     信号量
+    spawn.h         实时spawn接口
+    stropts.h       XSI STREAMS接口
+    trace.h         事件跟踪
+    
+  3. Single UNIX Specification
+    单一UNIX规范，是POSIX.1标准的一个超集，定义了一些附加的接口。
+    X/Open系统接口
+    
+  4. FIPS
+    Federal Information Processing Standard 联邦信息处理标准
+    美国政府出版，用于计算机系统的采购。
+    
+2.3 UNIX系统的实现
+  主要的三个标准 ISO C、 IEEE POSIX Single UNIX specification
+  
+  SVR4
+  BSD
+  FreeBSD
+  Linux
+  MAC OS X
+  Solaris
+  
+2.4 标准和实现的关系
+
+2.5 限制
+  编译时限制
+  运行时限制
+  
+  三种限制
+  1. 编译时限制
+  2. 不与文件或目录相关联的运行时限制（sysconf）
+  3. 与文件活目录相关联的运行时限制 pathconf、fpathconf
+  
+  ISO C 限制

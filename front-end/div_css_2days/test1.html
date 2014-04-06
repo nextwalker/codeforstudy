@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>W3Cfuns.com---“可容纳内联元素和其他坑状元素”</title>
+<style type="text/css">
+#div1{width:300px; height:300px; background:#900;}
+#div2{width:100px; height:100px; background:#090;}
+.label{ width:300px;background:#090;}
+li{background:#900;width:200px;display:inline;float:left;}
+</style>
+</head>
+<body>
+	<!--
+	<div id="div1">
+		<div id="div2"></div>
+	</div>
+	-->
+	<div style="background:blue;width:100px;height:100px;float:left;"></div>
+	<div style="background:red;width:300px;height:100px;float:left;"></div>
+	<div style="clear:both;"></div>
+	<div style="background:green;width:400px;height:50px;"></div>
+	<!--
+	<label class="label">123</label><input>
+	<label class="label">456</label><input>
+	<ul>
+		<li>23</li>
+		<li>24</li>
+		<li>25</li>
+	</ul>
+	-->
+</body>
+</html>
