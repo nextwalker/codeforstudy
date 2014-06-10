@@ -32,5 +32,5 @@ int main(int argc, char *argv[])
         }
         printf("%s\n", ptr);
     }
-    eixt(0);
+    exit(0);
 }
