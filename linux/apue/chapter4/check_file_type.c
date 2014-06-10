@@ -1,9 +1,10 @@
 #include "apue.h"
+#include <stdlib.h>
 
 int main(int argc, char *argv[])
 {
     int i;
-    strcut stat buf;
+    struct stat buf;
     char *ptr;
 
     for (i = 1; i < argc; i++) {
@@ -17,7 +18,19 @@ int main(int argc, char *argv[])
         }else if (S_ISDIR(buf.st_mode)) {
             ptr = "directory";
         }else if (S_ISCHR(buf.st_mode)) {
-            ptr = ""
+            ptr = "character special";
+        }else if (S_ISBLK(buf.st_mode)) {
+            ptr = "block special";
+        }else if (S_ISFIFO(buf.st_mode)) {
+            ptr  = "fifo";
+        }else if (S_ISLNK(buf.st_mode)) {
+            ptr = "symbolic link";
+        }else if (S_ISSOCK(buf.st_mode)) {
+            ptr = "socket";
+        }else{
+            ptr = "** unknown mode **";
         }
+        printf("%s\n", ptr);
     }
+    eixt(0);
 }
