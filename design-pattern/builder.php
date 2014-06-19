@@ -5,21 +5,25 @@
  */
 
 //购物车
-class ShoppingCart {
+class ShoppingCart
+{
     //选中的商品
     private $_goods = array();
     //使用的优惠券
     private $_tickets = array();
    
-     public function addGoods($goods) {
+    public function addGoods($goods) 
+    {
         $this->_goods[] = $goods;
     }
 
-    public function addTicket($ticket) {
+    public function addTicket($ticket)
+    {
         $this->_tickets[] = $ticket;
     }
 
-    public function printInfo() {
+    public function printInfo()
+    {
         printf("goods:%s, tickets:%s\n", implode(',', $this->_goods), implode(',', $this->_tickets));
     }
 }
@@ -42,7 +46,8 @@ $data = array(
 // exit;
 
 //我们提供创建者类来封装购物车的数据组装
-class CardBuilder {
+class CardBuilder 
+{
     private $_card;
     
     function __construct($card) {

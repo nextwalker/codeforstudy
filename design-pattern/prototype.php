@@ -5,28 +5,33 @@
  */
 
 //声明一个克隆自身的接口
-interface Prototype {
+interface Prototype 
+{
     function copy();
 }
 
 //产品要实现克隆自身的操作
-class Student implements Prototype {
+class Student implements Prototype
+{
     //简单起见，这里没有使用get set
     public $school;
     public $major;
     public $name;
 
-    public function __construct($school, $major, $name) {
+    public function __construct($school, $major, $name) 
+    {
         $this->school = $school;
         $this->major = $major;
         $this->name = $name;
     }
 
-    public function printInfo() {
+    public function printInfo() 
+    {
         printf("%s,%s,%s\n", $this->school, $this->major, $this->name);
     }
 
-    public function copy() {
+    public function copy()
+    {
         return clone $this;
     }
 }
