@@ -30,5 +30,4 @@ int main(void)
     printids("main thread:");
     sleep(1);
     exit(0);
-    exit(0);
 }
