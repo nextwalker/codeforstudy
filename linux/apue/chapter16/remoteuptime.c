@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     int sockfd, err;
 
     if (argc != 2) {
-        err_quit("usage: remoteuptime hostname");
+        err_quit("usage: ruptime hostname");
     }
 
     hint.ai_flags = 0;
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     hint.ai_addr = NULL;
     hint.ai_next = NULL;
 
-    if ((err = getaddrinfo(argv[1], argv[2], &hint, &ailist)) != 0) {
+    if ((err = getaddrinfo(argv[1], "ruptime", &hint, &ailist)) != 0) {
         err_quit("getaddrinfo error: %s", gai_strerror(err));
     }
 
