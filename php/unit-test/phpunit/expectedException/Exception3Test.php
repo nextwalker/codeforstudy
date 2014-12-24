@@ -1,5 +1,5 @@
 <?php
-class ExceptionTest3 extends PHPUnit_Framework_TestCase
+class Exceptio3Test extends PHPUnit_Framework_TestCase
 {
     public function testException()
     {

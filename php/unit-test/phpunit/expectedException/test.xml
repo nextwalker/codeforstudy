@@ -1,0 +1,4 @@
+<phpunit>
+      <directory>expectedException</directory>
+</phpunit>
+

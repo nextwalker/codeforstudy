@@ -1,5 +1,5 @@
 <?php
-class ExceptionTest2 extends PHPUnit_Framework_TestCase
+class Exception2Test extends PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException        InvalidArgumentException
