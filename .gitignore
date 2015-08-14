@@ -1,3 +1,4 @@
 *.out
 *.pyc
+/python/web.py/venv
 /python/flask/myproject/venv
