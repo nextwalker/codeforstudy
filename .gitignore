@@ -1,4 +1,2 @@
 *.out
 *.pyc
-/python/web.py/venv
-/python/flask/venv
