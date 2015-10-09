@@ -1,0 +1,84 @@
+#!/bin/bash
+act=$1
+path=$2
+if [ "$path" = "te" ]; then
+    filePath="vipte"
+elif [ "$path" = "club" ]; then
+    filePath="vipclub"
+elif [ "$path" = "user" ]; then
+    filePath="vipuser"
+elif [ "$path" = "goods" ]; then
+    filePath="vipgoods"
+elif [ "$path" = "179te" ]; then
+    filePath="179te"
+elif [ "$path" = "179club" ]; then
+    filePath="179club"
+elif [ "$path" = "179user" ]; then
+    filePath="179user"
+elif [ "$path" = "179goods" ]; then
+    filePath="179goods"
+elif [ "$path" = "all" ]; then
+    echo "vipte";    svn up /svn/vipte 
+    echo "vipclub";  svn up /svn/vipclub 
+    echo "viptpl";   svn up /svn/viptpl 
+    echo "vipuser";  svn up /svn/vipuser
+    echo "179te";    svn up /svn/179te
+    echo "179club";  svn up /svn/179club
+    echo "179goods"; svn up /svn/179goods
+    echo "179user";  svn up /svn/179user
+    exit
+else
+    echo "error domain"
+    exit
+fi
+
+fileName=$3
+
+if [ "$act" = "cp" ]; then
+    if [ "$(echo $fileName | grep .html)" != "" ]; then
+        echo "viptpl"; svn up /svn/viptpl 
+        file="/svn/viptpl/$filePath/$fileName"
+        target=/svn/179$path/trunk/views/$filePath/$fileName
+    elif [ "$(echo $fileName | grep A_)" != "" ]; then
+        fileName=${fileName#A_}
+        file="/svn/$filePath/library/App/$fileName"
+        target=/svn/179$path/trunk/applications/$filePath/library/App/$fileName
+    elif [ "$(echo $fileName | grep S_)" != "" ]; then
+        fileName=${fileName#S_}
+        file="/svn/$filePath/service/library/System/$fileName"
+        target=/svn/179$path/trunk/applications/$filePath/service/library/System/$fileName
+    elif [ "$(echo $fileName | grep .php)" != "" ]; then
+        file="/svn/$filePath/public/$fileName"
+        target=/svn/179$path/trunk/applications/$filePath/public/$fileName
+    fi
+    echo "$filePath"; svn up /svn/$filePath
+    echo "cp $file $target"
+    cp $file $target
+    svn st /svn/179$path
+else
+    if [ "$fileName" == "" ]; then
+       file="/svn/${filePath}/"
+    else
+       file="/svn/${filePath}/${fileName}/"
+    fi
+fi
+
+if [ "$act" = "up" ]; then
+    echo "svn $act $file"
+    svn $act $file
+elif [ "$act" = "st" ]; then
+    echo "svn $act $file"
+    svn $act $file
+elif [ "$act" = "diff" ]; then
+    echo "svn $act $file"
+    svn $act $file
+elif [ "$act" = "ci" ]; then
+    echo "svn $act -m $4 $file"
+    svn $act -m \"$4\" $file
+    svn up $file
+elif [ "$act" = "cp" ]; then
+    echo "OK"
+    #svn $act -m \"$4\" $file
+else 
+    echo "error act"
+fi

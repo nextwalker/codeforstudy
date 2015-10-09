@@ -1,0 +1,17 @@
+if [ "$act" = "ci" ]; then
+    if [ "$fileName" == "" ]; then
+       file="/svn/${path}/"
+    else
+       file="/svn/${path}/${fileName}/"
+    fi
+    echo "svn $act -m $4 $file"
+    svn $act -m \"$4\" $file
+    if [ "$path" = "club" ]; then
+        path=lux;
+    fi
+    echo "curl test.vipshop.com/update_version.php -u xcz:KPEU86VcyX -d select=$path |  head -n 2"
+    curl test.vipshop.com/update_version.php -u xcz:KPEU86VcyX -d select=s2 |  head -n 2
+    svn up $file
+else 
+    echo "error act"
+fi

@@ -1,0 +1,122 @@
+第六章 抽象
+
+函数 参数（parameter） 作用域（scope） 递归
+
+6.1 懒惰即美德
+    一次抽象，多处调用
+
+6.2 抽象与结构
+    抽象带来的易读性
+    
+6.3 创建函数
+    函数是可以调用，执行某种行为并且返回一个值
+    callable 判断函数是否可调用
+    python 3.0 callable不可以用，要用hasattr(func, __call__)
+    
+    def定义函数 return 返回值
+    
+    记录函数
+        #注释
+        文档字符串 作为函数的一部分进行存储
+        
+        定义文档字符串
+        def square(x):
+            'Calculates the square of the number x.'
+            return x*x
+        访问文档字符串
+            square.__doc__
+        __doc__是函数属性
+        
+        help函数 help(square)
+        
+    并非真正函数的函数
+        没有return 或者 return是空
+        返回值为None
+    
+6.4 参数魔法
+    值， 形式参数，实际参数。
+    断言和异常
+    
+    在函数内部把参数重绑定（赋值）的时候，函数外的变量不会受到影响。
+    
+    作用域
+        local scope 局部作用域
+        字符串(以及数字和元祖)是不可变的，接无法修改（只能用新的值覆盖）
+    
+        引用列表的时候
+        当两个变量同时引用一个列表的时候。
+        引用列表作为参数 可以在函数内部改变参数的值。
+        复制列表的副本 n = names[:]
+    
+    为什么要修改参数（可变参数）
+        使用函数改变数据结构(比如列表和字典)是将程序抽象化的好方法。
+    
+    抽象
+    def init(data):
+        data['first'] = {}
+        data['middle'] = {}
+        data['last'] = {}
+    storage = {}
+    init(storage)
+    def lookup(data, label, name)
+        return data[label].get(name)
+    lookup(storage, 'middle', 'lie')
+    
+    如果我的参数不可变呢（不可变参数，数字）
+        函数只能修改参数对象本身。
+        返回值，（多个值以元组形式返回）
+        真的想改变参数，可以将值放置在列表中。
+        
+    关键字参数和默认值
+        位置参数（位置比名字更加重要）
+        关键字参数 主要作用在于可以明确每个参数的作用。
+        hello_1(greeting="world", name="hello")
+        关键字参数最厉害的地方在于可以在函数中给参数提供默认值。
+        print '%s, %s' % (greeting, name)
+        
+        位置参数和关键字参数可以联合使用的，把位置参数放置在前面就可以了。（不建议使用）
+
+    收集参数
+        def print_params(title, *params) 
+        星号的意思就是收集其余的参数位置。元组的形式。
+        print_params('params', 1, 2, 3) 不能收集关键字参数。
+        
+        def print_params(title, **params) 
+        两个星号可以收集关键字参数，返回的是字典
+        def print_params(title, **params, **keypar) 可以同时存在
+        
+        例子？？
+    
+    反转过程
+        params = (1,2)
+        add(*params)
+        params = {'name':'Robin', 'greeting':'well met'}
+        hello_3(**params)
+        (定义和调用都不带两个**， hello_3也是可以正常调用的)
+        所以星号只在定义函数(允许使用不定数目的参数)或者调用(分割字典或者序列)时才有用。
+        调用超类的构造函数时，*尤其有用
+        
+6.5 作用域
+    x = 1 像字典一样，键引用值。
+    变量和所对应的值用的是一个"不可见"的字典.
+    vars() 返回字典。
+    
+    这类"不可见字典"叫做命名空间和作用域
+    除了全局作用域，每个函数调用都会创建一个新的作用域。
+    
+    局部变量，函数内的变量成为局部变量。 local variable
+    参数的工作原理类似于局部变量
+    全部变量函数内部也是可以访问的(非参数的全局变量)，不建议用。
+    重名的全局变量会被局部变量屏蔽，但是可以用过globals()['parameter']访问
+    vars 也可以返回全部变量的字典。
+    
+    修改全部变量的值
+    函数内部声明 global var
+    
+    python的函数是可以嵌套的。
+    嵌套作用域？？   
+
+6.6 递归
+
+6.7 小结
+            
