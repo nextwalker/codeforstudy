@@ -1,1 +1,0 @@
-#define MAXVAL 100

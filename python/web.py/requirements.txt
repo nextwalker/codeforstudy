@@ -1,4 +1,0 @@
-web.py
-markdown
-pymongo
-MySQL-python

@@ -1,6 +1,0 @@
-include文件包含include文件的时候，路径问题，找不到文件，
-include的原理是什么，怎么来管理include文件的目录。
-
-找不到文件的时候报错 Unable to access
-
-dirname（_FILE_）;返回当前目录，怎样来返回当前的路径。
