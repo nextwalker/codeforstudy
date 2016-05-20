@@ -1,3 +1,4 @@
 *.out
 *.pyc
 *.log
+practice/app/weixin/node_modules/*
